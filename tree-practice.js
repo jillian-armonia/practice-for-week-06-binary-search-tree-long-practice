@@ -5,15 +5,33 @@ const { BinarySearchTree, TreeNode } = require('./binary-search-tree.js');
 // Practice problems on binary trees
 
 function findMinBST (rootNode) {
-  // Your code here
+  let currentMin = rootNode;
+
+  while (currentMin.left !== null){
+     currentMin = currentMin.left;
+  }
+
+  return currentMin.val;
 }
 
 function findMaxBST (rootNode) {
-  // Your code here
+  let currentMax = rootNode;
+
+  while (currentMax.right !== null){
+    currentMax = currentMax.right;
+  }
+
+  return currentMax.val;
 }
 
 function findMinBT (rootNode) {
-  // Your code here
+  //Declare the root as the current min value
+  //Create a queue array where the root value is the first element
+  //While the queue isn't empty
+    //Shift the value from the queue
+    //Push its children in the queue
+    //If the shifted value is less than the current min, reassign the min
+  //Return the current min value
 }
 
 function findMaxBT (rootNode) {
@@ -55,7 +73,7 @@ function deleteNodeBST(rootNode, target) {
 
   // Case 2: Two children:
   //  Set the value to its in-order predecessor, then delete the predecessor
-  //  Replace target node with the left most child on its right side, 
+  //  Replace target node with the left most child on its right side,
   //  or the right most child on its left side.
   //  Then delete the child that it was replaced with.
 
