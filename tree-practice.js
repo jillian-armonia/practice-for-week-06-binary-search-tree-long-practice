@@ -25,21 +25,83 @@ function findMaxBST (rootNode) {
 }
 
 function findMinBT (rootNode) {
-  //Declare the root as the current min value
-  //Create a queue array where the root value is the first element
-  //While the queue isn't empty
-    //Shift the value from the queue
-    //Push its children in the queue
-    //If the shifted value is less than the current min, reassign the min
-  //Return the current min value
+  let min = rootNode;
+  let queue = [rootNode];
+
+  while (queue.length > 0){
+    let current = queue.shift();
+
+    if (current.left !== null){
+      queue.push(current.left);
+    }
+
+    if (current.right !== null){
+      queue.push(current.right);
+    }
+
+    if (current.val < min.val){
+      min = current;
+    }
+  }
+
+  return min.val;
 }
 
 function findMaxBT (rootNode) {
-  // Your code here
+  let max = rootNode;
+  let queue = [rootNode];
+
+  while (queue.length > 0){
+    let current = queue.shift();
+
+    if (current.left !== null){
+      queue.push(current.left);
+    }
+
+    if (current.right !== null){
+      queue.push(current.right);
+    }
+
+    if (current.val > max.val){
+      max = current;
+    }
+  }
+
+  return max.val
 }
 
 function getHeight (rootNode) {
-  // Your code here
+  if (rootNode === null) return -1;
+
+  let stack = [rootNode];
+  let levelCounter = 0;
+  let maxCounter = 0;
+
+  while (stack.length > 0){
+    let currentNode = stack.pop();
+
+    if (currentNode.left || currentNode.right){
+      levelCounter++;
+
+      if (currentNode.left){
+        stack.push(currentNode.left);
+      }
+
+      if (currentNode.right){
+        stack.push(currentNode.right)
+      }
+    }
+
+    if (!currentNode.left && !currentNode.right){
+      if (levelCounter > maxCounter){
+        maxCounter = levelCounter;
+        levelCounter = 0;
+      }
+    }
+
+  }
+
+  return maxCounter;
 }
 
 function balancedTree (rootNode) {
